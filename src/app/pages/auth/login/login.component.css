@@ -1,0 +1,9 @@
+:host {
+  display: block;
+  background-color: var(--surface-ground);
+  min-height: 100vh;
+}
+
+.p-card {
+  border-radius: 12px;
+}
