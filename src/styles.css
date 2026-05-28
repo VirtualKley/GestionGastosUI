@@ -9,7 +9,7 @@
 @import "primeflex/primeflex.css";
 
 /*Estilos globales de la app*/
-* {
+/* * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -20,8 +20,8 @@ body {
     background-color: var(--surface-ground);
     color: var(--text-color);
     min-height: 100vh;
-}
+} */
 
 /*Utilidades globales*/
-.w-full { width: 100%; }
-.h-screen { height: 100vh; }
+/* .w-full { width: 100%; }
+.h-screen { height: 100vh; } */

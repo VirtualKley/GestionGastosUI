@@ -1,0 +1,12 @@
+<div class="card">
+    <p-menubar [model]="items">
+        <ng-template pTemplate="end">
+            <div class="flex items-center gap-2">
+                <p-menu #menu [model]="itemsUser" [popup]="true" />
+                <div (click)="menu.toggle($event)" style="cursor: pointer;">
+                    <p-avatar [label]="authService.currentUser()?.nombre?.charAt(0)?.toUpperCase() ?? 'U'" shape="circle" />
+                </div>
+            </div>
+        </ng-template>
+    </p-menubar>
+</div>

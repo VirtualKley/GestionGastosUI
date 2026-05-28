@@ -1,5 +1,5 @@
-<div class="flex align-items-center justify-content-center h-screen">
-    <p-card styleClass="w-full md:w-4">
+<div class="flex align-items-center justify-content-center" style="height: 100vh;">
+    <p-card styleClass="w-full">
         <ng-template pTemplate="header">
             <div class="text-center pt-4">
                 <h2 class="text-primary mb-1 px-2">Gestión de Gastos</h2>
@@ -15,7 +15,7 @@
                     id="nombre"
                     formControlName="nombre"
                     placeholder="Tu nombre"
-                    class="w-full"
+                    class=""
                     [ngClass]="{'ng-invalid ng-dirty': nombre?.invalid && nombre?.touched}"
                 />
                 @if (nombre?.invalid && nombre?.touched) {

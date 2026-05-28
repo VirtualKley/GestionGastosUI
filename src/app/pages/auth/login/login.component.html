@@ -1,5 +1,5 @@
-<div class="flex align-items-center justify-content-center h-screen">
-  <p-card styleClass="w-full md:w-4">
+<div class="flex align-items-center justify-content-center" style="height: 100vh;">
+  <p-card>
 
     <ng-template pTemplate="header">
       <div class="text-center pt-4">
@@ -38,8 +38,7 @@
           placeholder="••••••••"
           [feedback]="false"
           [toggleMask]="true"
-          styleClass="w-full"
-          inputStyleClass="w-full"
+          class="w-full"
           [ngClass]="{'ng-invalid ng-dirty': password?.invalid && password?.touched}"
         />
         @if (password?.invalid && password?.touched) {
@@ -51,13 +50,16 @@
       </div>
 
       <!-- Error global -->
-      @if (errorMessage()) {
-        <p-message
-          severity="error"
-          [text]="errorMessage()"
-          styleClass="w-full mb-3"
-        />
-      }
+       <div class="flex flex-column gap-2 mb-3">
+        @if (errorMessage()) {
+          <p-message
+            severity="error"
+            [text]="errorMessage()"
+            styleClass="w-full mb-3"
+          />
+        }
+       </div>
+      
 
       <!-- Botón submit -->
       <p-button
