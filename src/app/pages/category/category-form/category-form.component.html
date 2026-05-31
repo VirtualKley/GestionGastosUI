@@ -1,0 +1,86 @@
+<form [formGroup]="form" class="form-container">
+
+  <!-- preview -->
+  <div class="preview">
+    <div class="preview-icon" [style.background]="colorHex + '22'">
+      {{ icono }}
+    </div>
+    <div>
+      <p class="preview-nombre">{{ nombre || 'Nombre categoría' }}</p>
+      <p class="preview-tipo">{{ tipo === 1 ? 'Egreso' : 'Ingreso' }}</p>
+    </div>
+  </div>
+
+  <!-- nombre -->
+  <div class="field">
+    <label>Nombre</label>
+    <input
+      pInputText
+      formControlName="nombre"
+      placeholder="ej. Alimentos"
+    />
+    @if (form.get('nombre')?.invalid && form.get('nombre')?.touched) {
+      <small class="error">El nombre es requerido.</small>
+    }
+  </div>
+
+  <!-- tipo -->
+  <div class="field">
+    <label>Tipo</label>
+    <p-dropdown
+        formControlName="tipo"
+        [options]="tipos"
+        optionLabel="label"
+        optionValue="value"
+        styleClass="w-full"
+    />
+  </div>
+
+  <!-- emojis -->
+  <div class="field">
+    <label>Ícono</label>
+    <div class="emoji-grid">
+      @for (emoji of emojis; track emoji) {
+        <div
+          class="emoji-opt"
+          [class.selected]="icono === emoji"
+          (click)="seleccionarEmoji(emoji)">
+          {{ emoji }}
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- colores -->
+  <div class="field">
+    <label>Color</label>
+    <div class="color-grid">
+      @for (color of colores; track color) {
+        <div
+          class="color-opt"
+          [class.selected]="colorHex === color"
+          [style.background]="color"
+          (click)="seleccionarColor(color)">
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- botones -->
+  <div class="form-actions">
+    <p-button
+      [label]="esEditar ? 'Actualizar' : 'Guardar'"
+      icon="pi pi-save"
+      [disabled]="form.invalid"
+      (onClick)="guardar()"
+    />
+    <p-button
+      label="Cancelar"
+      icon="pi pi-times"
+      severity="secondary"
+      [text]="true"
+      (onClick)="cancelar()"
+    />
+  </div>
+
+</form>

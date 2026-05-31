@@ -1,0 +1,101 @@
+<app-navbar />
+
+<p-confirmDialog />
+
+<div class="page-container">
+
+  <!-- header -->
+  <div class="page-header">
+    <span class="page-title">🏷️ Categorías</span>
+    <p-button
+      label="Nueva"
+      icon="pi pi-plus"
+      size="small"
+      (onClick)="abrirCrear()"
+    />
+  </div>
+
+  <!-- tabs -->
+  <p-tabView>
+
+    <!-- EGRESOS -->
+    <p-tabPanel header="💸 Egresos">
+      @if (egresos().length === 0) {
+        <p class="empty-msg">No hay categorías de egreso.</p>
+      }
+      @for (cat of egresos(); track cat.id) {
+        <div class="cat-item">
+          <div class="cat-icon" [style.background]="cat.colorHex + '22'">
+            {{ cat.icono }}
+          </div>
+          <div class="cat-info">
+            <span class="cat-nombre">{{ cat.nombre }}</span>
+          </div>
+          <div class="cat-dot" [style.background]="cat.colorHex"></div>
+          <p-button
+            icon="pi pi-pencil"
+            [text]="true"
+            size="small"
+            (onClick)="abrirEditar(cat)"
+          />
+          <p-button
+            icon="pi pi-trash"
+            [text]="true"
+            severity="danger"
+            size="small"
+            (onClick)="confirmarEliminar(cat)"
+          />
+        </div>
+      }
+    </p-tabPanel>
+
+    <!-- INGRESOS -->
+    <p-tabPanel header="💰 Ingresos">
+      @if (ingresos().length === 0) {
+        <p class="empty-msg">No hay categorías de ingreso.</p>
+      }
+      @for (cat of ingresos(); track cat.id) {
+        <div class="cat-item">
+          <div class="cat-icon" [style.background]="cat.colorHex + '22'">
+            {{ cat.icono }}
+          </div>
+          <div class="cat-info">
+            <span class="cat-nombre">{{ cat.nombre }}</span>
+          </div>
+          <div class="cat-dot" [style.background]="cat.colorHex"></div>
+          <p-button
+            icon="pi pi-pencil"
+            [text]="true"
+            size="small"
+            (onClick)="abrirEditar(cat)"
+          />
+          <p-button
+            icon="pi pi-trash"
+            [text]="true"
+            severity="danger"
+            size="small"
+            (onClick)="confirmarEliminar(cat)"
+          />
+        </div>
+      }
+    </p-tabPanel>
+
+  </p-tabView>
+
+</div>
+
+<!-- DIALOG CREAR / EDITAR -->
+<p-dialog
+  [(visible)]="dialogVisible"
+  [header]="categoriaSeleccionada ? 'Editar Categoría' : 'Nueva Categoría'"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  styleClass="w-full md:w-4"
+>
+  <app-category-form
+    [categoria]="categoriaSeleccionada"
+    (onGuardado)="onGuardado()"
+    (onCancelar)="cerrarDialog()"
+  />
+</p-dialog>

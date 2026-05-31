@@ -32,6 +32,15 @@ export const routes: Routes = [
         canActivate: [authGuard]
     },
 
+    //Ruta categoria - requieren autenticacion
+    {
+        path: 'category',
+        loadComponent: () => 
+            import('./pages/category/category.component')
+                .then(m => m.CategoryComponent),
+        canActivate: [authGuard]
+    },
+
     //Ruta exclusivas de admin
     {
         path: 'usuarios',

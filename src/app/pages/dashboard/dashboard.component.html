@@ -1,8 +1,44 @@
-<app-navbar></app-navbar>
-<div class="flex">
-    <p-card>
-        <ng-template #header>
-            <p>test</p>
-        </ng-template>
-    </p-card>
+<app-navbar />
+
+<div class="greeting">
+  <p class="greeting-hi">Buenos días,</p>
+  <p class="greeting-name">
+    {{ authService.currentUser()?.nombre }} 👋
+  </p>
+</div>
+
+<p class="section-label">Módulos</p>
+
+<div class="modulos-grid">
+  @for (mod of modulos(); track mod.label) {
+    @if (!mod.isAdmin || this.authService.isAdmin()) {
+        <div class="mod-card" (click)="router.navigate([mod.ruta])">
+
+        <div class="mod-accent" [style.background]="mod.accent"></div>
+
+        <div class="mod-icon"
+            [style.background]="mod.iconBg">
+            {{ mod.icon }}
+        </div>
+
+        <p class="mod-title">{{ mod.label }}</p>
+
+        <p class="mod-desc">{{ mod.desc }}</p>
+
+        <div class="mod-footer">
+            <div>
+            <p class="mod-stat-val" [style.color]="mod.accent">{{ mod.stat }}</p>
+            <p class="mod-stat-lbl">{{ mod.statLbl }}</p>
+            </div>
+            <div class="mod-arrow"
+            [style.background]="mod.iconBg"
+            [style.color]="mod.accent">
+            →
+            </div>
+        </div>
+
+        </div>
+    }
+    
+  }
 </div>
